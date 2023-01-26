@@ -10,7 +10,7 @@
   data-js-id="{{bouteille.bdc_id}}"
   @click="">
 
-  <div href="#" class="block shrink-0">
+  <div class="block shrink-0">
     <img
       alt="Speaker"
       src="{{bouteille.bout_image}}"
@@ -29,7 +29,7 @@
       {{bouteille.bout_description}}
     </p>
 
-    <div class="mt-2 sm:flex sm:items-center sm:gap-2">
+    <div class="mt-2 flex items-center gap-2">
       <div class="flex items-center text-gray-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,13 +48,12 @@
         <p class="ml-1 text-xs"> <span data-js-quantite>{{bouteille.bdc_quantite}}</span>  bouteilles</p>
       </div>
 
-      <span class="hidden sm:block" aria-hidden="true">&middot;</span>
+      <span class="block" aria-hidden="true">&middot;</span>
 
-      <p class="hidden sm:block sm:text-xs sm:text-gray-500">
-      <span data-js-ajouter>Ajouter</span>  
-        <span href="#" class="font-medium underline hover:text-gray-700" data-js-boire>
-          Boire 
-        </span>
+      <p class="block text-xs text-gray-500">
+      <span class="cursor-pointer" data-js-ajouter>Ajouter</span>  
+        <span
+        class="cursor-pointer font-medium underline hover:text-gray-700" data-js-boire> Boire </span>
       </p>
     </div>
   </div>
@@ -85,7 +84,7 @@ class="overflow-hidden sm:grid sm:grid-cols-2 sm:items-center section"
 
     <div class="mt-4 md:mt-8">
       <a
-        href="#"
+        href="/bouteille/nouveau"
         class="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
       >
         Commencer

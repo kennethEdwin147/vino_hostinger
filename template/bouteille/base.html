@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/css/tailwind2.css">
+    <link rel="stylesheet" href="/public/css/tailwind.css">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-emerald-50">
@@ -58,8 +58,8 @@
    <a href="#" class="flex items-center p-3 -mt-2 text-sm transition-colors duration-300 transform text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
        <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200" alt="jane avatar">
        <div class="mx-1">
-           <h1 class="text-sm font-semiboldtext-gray-200">Jane Doe</h1>
-           <p class="text-sm text-gray-400">janedoe@exampl.com</p>
+           <h1 class="text-sm font-semiboldtext-gray-200">{{session.utilisateur.uti_prenom}}</h1>
+           <p class="text-sm text-gray-400">{{session.utilisateur.uti_courriel}}</p>
        </div>
    </a>
   
@@ -86,7 +86,7 @@
   
    <hr class=" border-gray-700 ">
   
-   <a href="#" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
+   <a href="/utilisateur/deconnexion" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
        Déconnexion
    </a>
   </div>
@@ -109,9 +109,8 @@
   }
   </style>
    
-   
-{% block main %}
 
+{% block main %}
 
 
     

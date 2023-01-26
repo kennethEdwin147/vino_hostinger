@@ -84,10 +84,12 @@ class Utilisateur
     {
         $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/template');
         $twig = new \Twig\Environment($loader, [
+            'debug' => true,
             'cache' => false
         ]);
         $twig->addGlobal('session', $_SESSION);
-        echo $twig->render($file_name, $data);
+        $twig->addExtension(new \Twig\Extension\DebugExtension());
+        echo $twig->render($file_name , $data);
     }
 }
 

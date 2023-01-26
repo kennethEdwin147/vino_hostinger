@@ -17,8 +17,6 @@ class Bouteille
     public function cellier()
     {
         $bouteilles = (new BouteilleModel())->getBouteillesCellier();
-
-     
         $this->render('bouteille/cellier.html', [
             'bouteilles' => $bouteilles
         ]);
@@ -116,9 +114,11 @@ class Bouteille
     {
         $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/template');
         $twig = new \Twig\Environment($loader, [
+            'debug' => true,
             'cache' => false
         ]);
         $twig->addGlobal('session', $_SESSION);
+        $twig->addExtension(new \Twig\Extension\DebugExtension());
         echo $twig->render($file_name , $data);
     }
 }

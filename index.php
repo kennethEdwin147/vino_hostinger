@@ -1,7 +1,8 @@
 <?php
-session_start();
 require_once __DIR__. '/dataconf.model.php';
 require __DIR__ . '/vendor/autoload.php';
+session_start();
+
 // Create Router instance
 $router = new \Bramus\Router\Router();
 
