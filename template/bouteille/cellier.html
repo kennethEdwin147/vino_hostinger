@@ -1,0 +1,116 @@
+{% extends "bouteille/base.html" %}
+
+{% block main %}
+
+<section id="app-4" class="flex flex-wrap mt-10 section">
+
+{% for bouteille in bouteilles %}
+<article class="w-full md:w-1/2 rounded-xl border-2 border-gray-100 bg-white flex items-center p-6"
+   data-js-bouteille
+  data-js-id="{{bouteille.bdc_id}}"
+  @click="">
+
+  <div href="#" class="block shrink-0">
+    <img
+      alt="Speaker"
+      src="{{bouteille.bout_image}}"
+      class="h-18 w-14 rounded-lg object-cover"
+    />
+  </div>
+
+  <div class="ml-4">
+    <h3 class="font-medium text-xs md:text-sm">
+      <a href="/bouteille/detail/{{bouteille.bdc_id}}" class="hover:underline">
+        {{bouteille.bout_nom}}
+      </a>
+    </h3>
+
+    <p class="text-xs text-gray-700 line-clamp-2">
+      {{bouteille.bout_description}}
+    </p>
+
+    <div class="mt-2 sm:flex sm:items-center sm:gap-2">
+      <div class="flex items-center text-gray-500">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+          />
+        </svg>
+        <p class="ml-1 text-xs"> <span data-js-quantite>{{bouteille.bdc_quantite}}</span>  bouteilles</p>
+      </div>
+
+      <span class="hidden sm:block" aria-hidden="true">&middot;</span>
+
+      <p class="hidden sm:block sm:text-xs sm:text-gray-500">
+      <span data-js-ajouter>Ajouter</span>  
+        <span href="#" class="font-medium underline hover:text-gray-700" data-js-boire>
+          Boire 
+        </span>
+      </p>
+    </div>
+  </div>
+</article>
+
+{% endfor %}
+
+</section>
+
+
+{# message pour bouteilles vides #}
+{% if bouteilles is empty %}
+<section
+class="overflow-hidden sm:grid sm:grid-cols-2 sm:items-center section"
+>
+<div class="p-8 md:p-12 lg:px-16 lg:py-24">
+  <div class="mx-auto max-w-xl text-center sm:text-left">
+    <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+      Bienvenue sur Vino, <br> Ajouter votre première bouteille.
+    </h2>
+
+    <p class="hidden text-gray-500 md:mt-4 md:block">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
+      tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim et
+      fermentum, augue. Aliquet amet volutpat quisque ut interdum tincidunt
+      duis.
+    </p>
+
+    <div class="mt-4 md:mt-8">
+      <a
+        href="#"
+        class="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+      >
+        Commencer
+      </a>
+    </div>
+  </div>
+</div>
+
+<img
+  alt="Violin"
+  src="/public/img/drizzle_bg_2.jpg"
+  class=" hidden sm:block mt-9 sm:mt-0 h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-tl-[30px] md:h-[calc(100%_-_4rem)] md:rounded-tl-[60px]"
+/>
+</section>
+{% endif %}
+  <style>
+    @media (min-width: 800px) {
+      .section {
+        max-width: clamp(0px, 80vw, 1200px);
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+  </style>
+  <script src="/public/js/Bouteille.js"></script>
+  <script src="/public/js/main.js"></script>
+{% endblock main %}

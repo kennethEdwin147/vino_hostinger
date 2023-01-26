@@ -1,0 +1,11 @@
+{
+    "require": {
+        "bramus/router": "~1.6",
+        "fabpot/goutte": "^4.0",
+        "twig/twig": "^3.0",
+        "dibi/dibi": "^4.2"
+    },
+    "autoload": {
+        "classmap": ["controllers/", "models/", "public"]
+    }
+}

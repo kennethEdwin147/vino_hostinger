@@ -1,0 +1,108 @@
+{% extends "bouteille/base.html" %}
+
+{% block main %}
+
+  <header>
+    <img class="max-h-24 md:max-h-52 w-full object-cover" src="/public/img/drizzle_bg_2.jpg" alt="">
+  </header>
+  
+  <section class="pb-8 section">
+      <article class="flex justify-center items-center">
+          <div class="w-full max-w-md pt-6 md:pt-12">
+              <form x-data="combobox" method="POST" action="/bouteille/insertion" class="bg-white shadow-md rounded px-8 pt-6  pb-8 mb-4">
+                  <div class="mb-4">
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Date d'achat
+                      </label>
+                      <input name="bdc_date_achat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="datetime-local" placeholder="" required>
+                  </div>
+                  <div class="mb-4" >
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        bouteille
+                      </label>
+
+                    <div class="relative">
+                      <input 
+                      @input="recherche" 
+                      x-model="message"
+                      class="bg-slate-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Recherche de vin...">
+                      <div type="submit" class="absolute right-0 top-0 mt-3 mr-4">
+                        <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                          viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
+                          width="512px" height="512px">
+                          <path
+                            d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                        </svg>
+                      </div>
+                    </div>
+                   
+                </div>
+                <div class="mb-4">
+                  <select
+                  x-show="bouteilles.length > 1"
+                  name="bdc_bout_id" 
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <template x-for="bouteille in bouteilles">
+                      <option :value="bouteille.bout_id" x-text="bouteille.bout_nom" value=""></option>
+                    </template>                      
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                   Quantite
+                  </label>
+                  <input name="bdc_quantite" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="number" placeholder="Quantite">
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    notes
+                  </label>
+                  <input name="bdc_notes" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="notes">
+                </div>
+              
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                      Millesime
+                  </label>
+                  <input name="bdc_millesime" class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="Millesime" required>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Garder jusqu'à
+                  </label>
+                  <input name="bdc_garde_jusqua" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="datetime-local" placeholder="garde_jusqua">
+                </div>
+                <div class="mt-9 flex items-center justify-between">
+                  <button class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Ajouter
+                  </button>
+                </div>
+                <input type="hidden" name="bdc_cel_id" value="{{cellierUtilisateur.cel_id}}">
+              </form>
+              <p class="text-center text-gray-500 text-xs">
+                &copy;2023 Vino Corp. All rights reserved.
+              </p>
+            </div>
+      </article>
+  </section>
+  
+
+<style>
+.section {
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 800px) {
+    .section {
+        max-width: clamp(0px, 80vw, 1000px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+</style>
+<script src="/public/js/comboBox.js"></script>
+
+{% endblock main %}

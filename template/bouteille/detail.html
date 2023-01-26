@@ -1,0 +1,79 @@
+{% extends "bouteille/base.html" %}
+
+{% block main %}
+
+  <header>
+    <img class="max-h-24 md:max-h-52 w-full object-cover" src="/public/img/drizzle_bg_2.jpg" alt="">
+  </header>
+
+  <section class="pb-8 section">
+      <article class="flex justify-center items-center">
+          <div class="w-full max-w-md pt-6 md:pt-12">
+              <form x-data="combobox" method="POST" action="/bouteille/modifier" class="bg-white shadow-md rounded px-8 pt-6  pb-8 mb-4">
+                  <div class="mb-4">
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Date d'achat
+                      </label>
+                      <input name="bdc_date_achat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="datetime-local" required value="{{resultatDetail.bdc_date_achat}}">
+                  </div>
+             
+            
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                   Quantite
+                  </label>
+                  <input name="bdc_quantite" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="number" value="{{resultatDetail.bdc_quantite}}">
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    notes
+                  </label>
+                  <input name="bdc_notes" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value="{{resultatDetail.bdc_notes}}">
+                </div>
+              
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                      Millesime
+                  </label>
+                  <input name="bdc_millesime" class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" value="{{resultatDetail.bdc_millesime}}" required>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Garder jusqu'à
+                  </label>
+                  <input name="bdc_garde_jusqua" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username"  type="datetime-local" value="{{resultatDetail.bdc_garde_jusqua}}">
+                </div>
+                <div class="mt-9 flex items-center justify-between">
+                  <button class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Modifier
+                  </button>
+                </div>
+                <input type="hidden" name="bdc_id" value="{{resultatDetail.bdc_id}}">
+              </form>
+              <p class="text-center text-gray-500 text-xs">
+                &copy;2023 Vino Corp. All rights reserved.
+              </p>
+            </div>
+      </article>
+  </section>
+  
+
+<style>
+.section {
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 800px) {
+    .section {
+        max-width: clamp(0px, 80vw, 1000px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+</style>
+<script src="/public/js/comboBox.js"></script>
+
+{% endblock main %}
