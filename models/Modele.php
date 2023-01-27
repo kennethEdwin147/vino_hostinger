@@ -17,6 +17,7 @@ class Modele {
 			'password' => PASSWORD,
 			'database' => DATABASE,
 		]);
+	
 	}
 	
 }

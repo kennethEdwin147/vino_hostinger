@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/css/tailwind3.css">
+    <link rel="stylesheet" href="/public/css/tailwind.css">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-emerald-50">
@@ -19,8 +19,8 @@
   </div>
   <div>
    <a href="/utilisateur/deconnexion" class="mr-6 font-medium">Déconnexion</a>
-   <a href="/bouteille/nouveau" class="bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-     Ajouter
+   <a href="/bouteille/nouveau" class="text-sm bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+     Ajouter Bouteille
    </a>
   </div>
  </nav>
@@ -38,8 +38,8 @@
      </div>
     </div>
     <div>
-     <a href="/bouteille/nouveau" class="bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-       Ajouter
+     <a href="/bouteille/nouveau" class="text-sm bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+       Ajouter Bouteille
      </a>
     </div>
    </nav>
@@ -56,31 +56,27 @@
    class="absolute left-4 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right rounded-md shadow-xl bg-gray-800"
   >
    <a href="#" class="flex items-center p-3 -mt-2 text-sm transition-colors duration-300 transform text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
-       <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200" alt="jane avatar">
+       <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="/public/img/drizzle.jpg" alt="jane avatar">
        <div class="mx-1">
-           <h1 class="text-sm font-semiboldtext-gray-200">{{session.utilisateur.uti_prenom}}</h1>
+           <h1 class="text-sm font-semiboldtext-gray-200">
+            {{session.utilisateur.uti_prenom}}
+            {{session.utilisateur.uti_nom}}
+           </h1>
            <p class="text-sm text-gray-400">{{session.utilisateur.uti_courriel}}</p>
        </div>
    </a>
   
    <hr class=" border-gray-700 ">
   
-   <a href="#" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
-    Mon compte
-   </a>
   
-   <a href="#" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
+   <a href="/bouteille/cellier" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
     Mon Cellier
    </a>
   
    <hr class=" border-gray-700 ">
   
-   <a href="#" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
-     Mes bouteilles
-   </a>
-  
-   <a href="#" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
-       Team
+   <a href="/bouteille/nouveau" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
+    Nouvelle bouteille
    </a>
   
   

@@ -2,12 +2,25 @@
 class Utilisateur
 {
     public function accueil()
-    {
-        $this->render('utilisateur/connexion.html');  
+    {  
+        if (isset($_SESSION['utilisateur'])) {
+            header('location: /bouteille/cellier');
+            exit();
+        }
+    
+        $this->render('utilisateur/connexion.html',[
+            'message'=> $_GET['message'] ?? 'nop',
+        ]);
+
     }
 
     public function inscription()
-    {   
+    {  
+        if (isset($_SESSION['utilisateur'])) {
+            header('location: /bouteille/cellier');
+            exit();
+        }
+         
         $this->render('utilisateur/inscription.html');  
     }
 
@@ -26,7 +39,7 @@ class Utilisateur
         if (! isset($possibleUser)) {
              $id_utilisateur = $model->creerUsager($_POST);
              (new CellierModel())->insertion($id_utilisateur);
-             header("Location: /utilisateur/accueil"); 
+             header("Location: /utilisateur/accueil?message=compte"); 
              exit();
         } else {
             $this->render('utilisateur/inscription.html', [

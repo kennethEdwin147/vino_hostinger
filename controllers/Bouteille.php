@@ -16,9 +16,11 @@ class Bouteille
      */
     public function cellier()
     {
+      
         $bouteilles = (new BouteilleModel())->getBouteillesCellier();
         $this->render('bouteille/cellier.html', [
-            'bouteilles' => $bouteilles
+            'bouteilles' => $bouteilles,
+            'message' => $_GET['message'] ?? 'ouii'
         ]);
     }
 
@@ -40,17 +42,20 @@ class Bouteille
     }
 
   
-    
     /**
      * Gère la requête INSERT de bouteille
      *
      * @return void
      */
     public function insertion()
-    {
+    { 
         $bte = new BouteilleModel();
+        /* Récupère l'id de la bouteille par son nom */
+        $id_bouteille = $bte->getIdByName($_POST['nom_bouteille_saq'])['bout_id'];
+        $_POST['bdc_bout_id'] = $id_bouteille;
+       
         $cellier = $bte->insertion($_POST);
-        header("Location: /bouteille/cellier");
+        header("Location: /bouteille/cellier?message=ajouter");
         exit();
     }
     
@@ -66,15 +71,14 @@ class Bouteille
         $result = $model->getUneBouteilleCellier($id_bouteille);
         $result['bdc_date_achat'] = str_replace('.000000', '', $result['bdc_date_achat']);
         $this->render('bouteille/detail.html',[
-            'resultatDetail' => $result
-            
+            'resultatDetail' => $result   
         ]);
     }
 
     public function modifierBouteille()
     {
         (new BouteilleModel())->modifierBouteille($_POST);
-        header("Location: /bouteille/cellier");
+        header("Location: /bouteille/cellier?message=modifier");
         exit();
     }
 
