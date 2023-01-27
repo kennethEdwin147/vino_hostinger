@@ -51,7 +51,7 @@ class Bouteille
     { 
         $bte = new BouteilleModel();
         /* Récupère l'id de la bouteille par son nom */
-        $id_bouteille = $bte->getIdByName($_POST['nom_bouteille_saq'])['bout_id'];
+        $id_bouteille = $bte->getIdByName($_POST['nom_bouteille_saq'])['bout_id'] ?? '11';
         $_POST['bdc_bout_id'] = $id_bouteille;
        
         $cellier = $bte->insertion($_POST);
@@ -105,6 +105,13 @@ class Bouteille
         $body = json_decode(file_get_contents('php://input'));
         $listeBouteille = (new BouteilleSAQModel())->autocomplete($body->nom);
         echo json_encode($listeBouteille);
+    }
+
+    public function supprimer($id_bouteille)
+    {
+        (new BouteilleModel())->supprimer($id_bouteille);
+        header("Location: /bouteille/cellier?message=supprimer");
+        exit();
     }
 
     /**

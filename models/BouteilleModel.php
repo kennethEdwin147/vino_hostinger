@@ -118,6 +118,12 @@ class BouteilleModel extends Modele {
 		return $bouteille;
 	}
 
+	public function supprimer($id_bouteille)
+	{
+		$this->database->query('DELETE FROM bouteille_du_cellier WHERE bdc_id = ?', $id_bouteille);
+		return $this->database->getAffectedRows();
+	}
+
 
 
 }
