@@ -1,0 +1,67 @@
+{% extends "bouteille/base.html" %}
+
+{% block main %}
+
+<header>
+    <img class="max-h-24 md:max-h-32 w-full object-cover" src="/public/img/drizzle_bg_2.jpg" alt="">
+</header>
+
+<section class="section -mt-9 sm:-mt-11">
+    <div class="relative inline-flex items-center justify-center overflow-hidden 
+            bg-violet-300 rounded-full
+            border-8 border-white border-solid
+            w-20 h-20
+            sm:w-28 sm:h-28">
+        <span class="font-bold sans_6  capitalize text-black
+            text-3xl
+             sm:text-5xl">{{session.utilisateur.uti_prenom |first}}</span>
+    </div>
+</section>
+<section class="section mt-4 sm:mt-6 md:mt-9">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold ">Mon compte</h1>
+
+</section>
+{# liste: https://flowbite.com/docs/typography/lists/  #}
+<section class="section mt-8 sm:mt-10 md:mt-9">
+    <h1 class="text-lg sm:text-2xl md:text-3xl font-extrabold ">Mes informations</h1>
+
+    <dl class="max-w-md text-gray-900 divide-y divide-gray-200 mt-7">
+        <div class="flex flex-col pb-3">
+            <dt class="mb-1 text-gray-500 md:text-lg ">Adresse Courriel</dt>
+            <dd class="text-base md:text-lg font-semibold">{{session.utilisateur.uti_courriel}}</dd>
+        </div>
+        <div class="flex flex-col py-3">
+            <dt class="mb-1 text-gray-500 md:text-lg ">Nom </dt>
+            <dd class="text-base md:text-lg font-semibold">
+                {{session.utilisateur.uti_nom}} 
+            </dd>
+        </div>
+        <div class="flex flex-col py-3">
+            <dt class="mb-1 text-gray-500 md:text-lg ">Prénom</dt>
+            <dd class="text-base md:text-lg font-semibold">
+                {{session.utilisateur.uti_prenom}}
+            </dd>
+        </div>
+       
+    </dl>
+</section>
+   {# 
+      <div class="mx-1 ml-3">
+           <h1 class="text-sm font-semiboldtext-gray-200">
+            {{session.utilisateur.uti_prenom}}
+            {{session.utilisateur.uti_nom}}
+           </h1>
+           <p class="text-sm text-gray-400">{{session.utilisateur.uti_courriel}}</p>
+       </div> #}
+<style>
+    .section {
+        max-width: clamp(0px, 80vw, 1200px);
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .sans_6 {
+        font-family: sans-serif;
+      }
+  </style>
+
+{% endblock main %}

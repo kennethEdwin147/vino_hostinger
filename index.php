@@ -15,6 +15,8 @@ $router->post('/utilisateur/connexion', 'Utilisateur@connexion');
 $router->get('/utilisateur/deconnexion', 'Utilisateur@deconnexion');
 $router->post('/utilisateur/creation', 'Utilisateur@creation'); 
 
+$router->get('/admin/dashboard', 'Admin@dashboard');
+$router->get('/admin/connexion', 'Admin@admin');
 
 /* route s'assurant que l'usager soit authentifié */
 $router->before('GET|POST', '/bouteille/.*', 'Bouteille@protection');
@@ -32,8 +34,26 @@ $router->post('/bouteille/api/select', 'Bouteille@apiSelect');
 $router->get('/bouteille/detail/{id}', 'Bouteille@detailBouteille');
 $router->post('/bouteille/modifier', 'Bouteille@modifierBouteille');
 
-$router->get('/bouteille/supprimer/{id}', 'Bouteille@supprimer');
 
+$router->get('/bouteille/supprimer/{id}', 'Bouteille@supprimer');
+$router->post('/bouteille/recherche', 'Bouteille@recherche');
+
+/* route compte */
+$router->before('GET|POST', '/compte/.*', 'Bouteille@protection');
+$router->get('/compte/compte', 'Compte@compte');
+
+
+/* Liste des Celliers */
+
+/* route s'assurant que l'usager soit authentifié */
+$router->before('GET|POST', '/cellier/.*', 'Cellier@protection');
+
+$router->get('/cellier/cellier', 'Cellier@toutCellier');
+$router->get('/cellier/un/{id}', 'Cellier@unCellier');
+
+$router->post('/cellier/ajout', 'Cellier@ajout');
+$router->get('/cellier/supprim/{id}','Cellier@supprim');
+$router->post('/cellier/modif', 'Cellier@modif');
 
 $router->run();
 

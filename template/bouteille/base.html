@@ -4,32 +4,96 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/css/tailwind12.css">
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Mon Vino</title>
+    <link rel="stylesheet" href="/public/css/mytailwind.css">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="76x76" href="/public/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/public/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/public/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#ffffff">
+  
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-emerald-50">
+<body class="bg-color">
   
 <!-- nav desktop -->
-<nav class="hidden md:flex justify-between items-center bg-white border border-solid border-zinc-300 p-4 md:py-6 md:px-20">
-  <div>
-    <a href="/bouteille/cellier">
-      <img src="/public/img/vino_noir.svg" alt="">
-    </a>
-  </div>
-  <div>
-   <a href="/utilisateur/deconnexion" class="mr-6 font-medium">Déconnexion</a>
-   <a href="/bouteille/nouveau" class="text-sm bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-     Ajouter Bouteille
-   </a>
-  </div>
- </nav>
+<section class="bg-white">
+  <nav class=" section hidden md:flex justify-between items-center  p-4 md:px-0">
+    
+    <div>
+      <a href="/cellier/cellier">
+        <img src="/public/img/vino_noir.svg" alt="">
+      </a>
+    </div>
+      
+    <!-- Recherche -->
+{#     <form method="POST" action="/bouteille/recherche">   
+      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input name="recherche" type="search" id="default-search" class="block w-96 p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Recherchez un vin dans votre cellier" required>
+      </div>
+    </form> #}
+  
+    
+    <div class="flex justify-center items-center gap-14 relative">
+      <div x-data="{open : false}" class="flex flex-col  space-y-1 ">
+          <div class="">
+              <p @click="open = true" class="flex items-center">
+                  <span class="font-medium">Compte</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1 mx-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 0 1 1.414 0L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z" clip-rule="evenodd"></path></svg>
+              </p>
+          </div>
+          <!--Options-->
+          <div x-show="open === true" x-transition="" @click.outside="open = false" class="absolute top-11 flex flex-col text-sm w-40 left-0 mt-2 bg-white rounded-sm shadow-md overflow-hidden" style="display: none;">
+              <div>
+                  <a class="w-full block hover:bg-slate-200 p-2" href="/compte/compte">Profil</a>
+                  <a class="w-full block hover:bg-slate-200 p-2" href="/utilisateur/deconnexion">Deconnexion</a>
+              </div>
+              {% if session.utilisateur.uti_rol_id == 1  %}
+              <div class="border-t border-slate-400">
+                  <a class="w-full block hover:bg-slate-200 p-2" href="/admin/dashboard">Admin</a>
+                </div>
+                {% endif %}
+          </div>
+          <!--Options-->
+      </div>
+  
+  
+      {# <a href="/utilisateur/deconnexion" class="mr-6 font-medium">Déconnexion</a>
+      <a href="/compte/compte" class="mr-6 font-medium">Profil</a>
+      {% if session.utilisateur.uti_rol_id == 2  %}
+      <a href="/admin/dashboard" class="mr-6 font-medium">Admin</a>
+        
+      {% endif %} #}
+     <a href="/bouteille/nouveau" class="text-sm bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+       Ajouter Bouteille
+     </a> 
+    
+  
+    </div>
+    
+    
+  
+   </nav>
+</section>
+
+
+
+
+
 
  
 <!-- nav mobile -->
 <section class="md:hidden relative" x-data="{ isOpen: false }">
 
-  <nav class="flex justify-between items-center bg-white border border-solid border-zinc-300 p-4 md:py-6 md:px-20">
+  <nav class="flex justify-between items-center bg-white p-4 md:py-6 md:px-20">
     <div>
      <div class="btn_ham" @click="isOpen = ! isOpen">
       <span></span>
@@ -41,6 +105,9 @@
      <a href="/bouteille/nouveau" class="text-sm bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
        Ajouter Bouteille
      </a>
+   {#   <a href="/admin/dashboard" class="text-sm bg-gray-800 mx-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Admin
+      </a> #}
     </div>
    </nav>
   
@@ -55,9 +122,20 @@
    x-transition:leave-end="opacity-0 scale-90"
    class="absolute left-4 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right rounded-md shadow-xl bg-gray-800"
   >
-   <a href="#" class="flex items-center p-3 -mt-2 text-sm transition-colors duration-300 transform text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
-       <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="/public/img/drizzle.jpg" alt="jane avatar">
-       <div class="mx-1">
+   <a href="/compte/compte" class="flex items-center p-3 -mt-2 text-sm transition-colors duration-300 transform text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+
+        {# menu style google  #}
+            <div class="relative inline-flex items-center justify-center overflow-hidden 
+            bg-violet-300 rounded-full
+            border-2 border-white border-solid
+                  w-10 h-10">
+              <span class="font-bold sans_6  capitalize text-black
+                  text-2xl
+                  "> {{session.utilisateur.uti_prenom |first}}</span>
+          </div>
+          {#  #}
+
+       <div class="mx-1 ml-3">
            <h1 class="text-sm font-semiboldtext-gray-200">
             {{session.utilisateur.uti_prenom}}
             {{session.utilisateur.uti_nom}}
@@ -69,16 +147,23 @@
    <hr class=" border-gray-700 ">
   
   
-   <a href="/bouteille/cellier" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
+   {# <a href="/bouteille/cellier" class="block px-4 py-3 text-sm  transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
     Mon Cellier
+   </a> #}
+   <a href="/cellier/cellier" class="block px-4 py-3 text-sm  transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
+    Mes celliers
    </a>
-  
    <hr class=" border-gray-700 ">
   
-   <a href="/bouteille/nouveau" class="block px-4 py-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
+   <a href="/bouteille/nouveau" class="block px-4 py-3 text-sm  transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
     Nouvelle bouteille
    </a>
   
+ {#   <a href="/admin/dashboard" class="block px-4 py-3 text-sm  transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 dark:hover:text-white">
+    Admin
+    </a> #}
+   
+    <hr class=" border-gray-700 ">
   
    <hr class=" border-gray-700 ">
   
@@ -102,6 +187,13 @@
   }
   .btn_ham > span + span {
     margin-top: 4.5px;
+  }
+
+  .bg-color {
+    background-color: rgba(240, 255, 255, 0.486);
+  }
+  .sans_6 {
+    font-family: sans-serif;
   }
   </style>
    

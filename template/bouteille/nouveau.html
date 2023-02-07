@@ -11,12 +11,14 @@
       <article class="flex justify-center items-center">
           <div class="w-full max-w-md pt-6 md:pt-12">
               <form x-data="combobox" method="POST" action="/bouteille/insertion" class="bg-white border-solid border	border-gray-300 shadow-md rounded px-8 pt-6  pb-8 mb-4">
-                  <div class="mb-4">
+                  
+                <div class="mb-4">
                       <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                         Date d'achat
                       </label>
-                      <input name="bdc_date_achat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="datetime-local" placeholder="" required>
-                  </div>
+                      <input name="bdc_date_achat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="date">
+                  </div> 
+
                   <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="choix_vin">Choisir une bouteille:</label>
                     <input 
@@ -33,18 +35,42 @@
                     </template>  
                     </datalist>
                   </div>
+                  <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Choix du Cellier
+                    </label>
+                   {% if listeCellier is empty %}
+                   <div id="alert-border-5" class="flex p-4 border-t-4 border-gray-300 bg-gray-50" role="alert">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-800 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <div class="ml-3 text-sm font-medium text-gray-800 ">
+                       <a href="/cellier/cellier" class="font-semibold underline hover:text-gray-800 hover:no-underline">Procéder à l'ajout de votre premier cellier</a>
+                    </div>
+                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-gray-50 text-gray-500 rounded-lg focus:ring-2 focus:ring-gray-400 p-1.5 hover:bg-gray-200 inline-flex h-8 w-8  " data-dismiss-target="#alert-border-5" aria-label="Close">
+                      <span class="sr-only">Dismiss</span>
+                      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                  </div>                   
+                {% else %}
+                    <select name="bdc_cel_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="number">
+                      {% for cellier in listeCellier %}
+                        <option value="{{cellier.cel_id}}">{{cellier.cel_nom}}</option>
+                      {% endfor %}
+                    </select>
+                   {% endif %}
+                   
+                  </div>
                 <div class="mb-4">
                   <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                    Quantite
                   </label>
-                  <input name="bdc_quantite" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="number" placeholder="Quantite">
+                  <input name="bdc_quantite" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="number" value="1">
                 </div>
                 <div class="mb-4">
                   <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                     notes
-                  </label>
-                  <input name="bdc_notes" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="notes">
-                </div>
+                  </label>                
+                  <textarea name="bdc_notes" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Vos commentaires..."></textarea>
+                  </div>
               
                 <div class="mb-4">
                   <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -56,14 +82,13 @@
                   <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                       Garder jusqu'à
                   </label>
-                  <input name="bdc_garde_jusqua" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="datetime-local" placeholder="garde_jusqua">
+                  <input name="bdc_garde_jusqua" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="date" >
                 </div>
                 <div class="mt-9 flex items-center justify-between">
                   <button class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Ajouter
                   </button>
                 </div>
-                <input type="hidden" name="bdc_cel_id" value="{{cellierUtilisateur.cel_id}}">
               </form>
               <p class="text-center text-gray-500 text-xs">
                 &copy;2023 Vino Corp. All rights reserved.

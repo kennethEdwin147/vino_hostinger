@@ -125,6 +125,39 @@ class BouteilleModel extends Modele {
 	}
 
 
+	public function rechercheNom($recherche)
+	{
+		return $this->database->fetchAll(
+			"SELECT 
+				bouteille_du_cellier.*,
+				bouteille_saq.*			
+			from cellier
+			INNER JOIN bouteille_du_cellier ON cellier.cel_id = bouteille_du_cellier.bdc_cel_id
+			INNER JOIN bouteille_saq on bouteille_du_cellier.bdc_bout_id = bouteille_saq.bout_id 
+			WHERE cellier.cel_uti_id = ?
+			AND bouteille_saq.bout_nom LIKE '%$recherche%'",
+			$_SESSION['uti_id']
+		);
+	}
+
+	/**
+	 * Tri des vins dans le cellier
+	 */
+	public function triNom($tri)
+	{
+		return $this->database->fetchAll(
+			"SELECT 
+				bouteille_du_cellier.*,
+				bouteille_saq.*			
+			from cellier
+			INNER JOIN bouteille_du_cellier ON cellier.cel_id = bouteille_du_cellier.bdc_cel_id
+			INNER JOIN bouteille_saq on bouteille_du_cellier.bdc_bout_id = bouteille_saq.bout_id 
+			WHERE cellier.cel_uti_id = ?
+			ORDER BY bout_nom ASC
+			AND bouteille_saq.bout_nom LIKE '%$tri%'",
+			$_SESSION['uti_id']
+		);
+	}
 
 }
 

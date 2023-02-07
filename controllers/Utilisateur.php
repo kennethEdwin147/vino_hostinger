@@ -4,7 +4,7 @@ class Utilisateur
     public function accueil()
     {  
         if (isset($_SESSION['utilisateur'])) {
-            header('location: /bouteille/cellier');
+            header('location: /cellier/cellier');
             exit();
         }
     
@@ -17,7 +17,7 @@ class Utilisateur
     public function inscription()
     {  
         if (isset($_SESSION['utilisateur'])) {
-            header('location: /bouteille/cellier');
+            header('location: /cellier/cellier');
             exit();
         }
          
@@ -67,7 +67,7 @@ class Utilisateur
         if(!$erreur) {
             $_SESSION['utilisateur'] = $utilisateur;
             $_SESSION['uti_id'] = $_SESSION['utilisateur']['uti_id'];
-            header("Location: /bouteille/cellier"); 
+            header("Location: /cellier/cellier"); 
             exit();
         }
         else {

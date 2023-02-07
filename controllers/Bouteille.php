@@ -9,22 +9,36 @@ class Bouteille
         } 
     } 
 
-    /**
-     * Affiche la page du cellier de l'utilisateur
-     *
-     * @return void
-     */
-    public function cellier()
+    /* 
+    * Recherche
+    *
+    *
+    */
+    public function recherche()
     {
-      
-        $bouteilles = (new BouteilleModel())->getBouteillesCellier();
+        $recherche = $_POST['recherche'];
+        $model = new BouteilleModel();
+        print_r($recherche);
+        $resultat = $model->rechercheNom($recherche);
         $this->render('bouteille/cellier.html', [
-            'bouteilles' => $bouteilles,
-            'message' => $_GET['message'] ?? 'ouii'
+            'bouteilles' => $resultat
         ]);
+
+    }
+        
+    /* trie */
+    public function tri()
+    {
+        $tri = $_POST['tri'];
+        $model = new BouteilleModel();
+        print_r($tri);
+        $resultat = $model->triNom($tri);
+        $this->render('bouteille/cellier.html', [
+            'bouteilles' => $resultat
+        ]);
+
     }
 
-        
     /**
      * Affiche la page d'ajout de bouteille
      *
@@ -33,11 +47,11 @@ class Bouteille
     public function nouveau()
     {  
         $bouteillesSAQ = (new BouteilleSAQModel())->getListeBouteille();
-        $cellierUtilisateur = (new CellierModel())->getCellier($_SESSION['uti_id']);
+        $listeCellier = (new CellierModel())->getAllCelliers($_SESSION['uti_id']);
 
         $this->render('bouteille/nouveau.html',[
             'bouteillesSAQ' => $bouteillesSAQ,
-            'cellierUtilisateur' => $cellierUtilisateur 
+            'listeCellier' => $listeCellier 
         ]);
     }
 
@@ -55,7 +69,8 @@ class Bouteille
         $_POST['bdc_bout_id'] = $id_bouteille;
        
         $cellier = $bte->insertion($_POST);
-        header("Location: /bouteille/cellier?message=ajouter");
+        $id_cellier = $_POST['bdc_cel_id'];
+        header("Location: /cellier/un/$id_cellier?message=ajouter");
         exit();
     }
     
@@ -78,7 +93,8 @@ class Bouteille
     public function modifierBouteille()
     {
         (new BouteilleModel())->modifierBouteille($_POST);
-        header("Location: /bouteille/cellier?message=modifier");
+        $id_cellier = $_POST['bdc_cel_id'];
+        header("Location: /cellier/un/$id_cellier?message=modifier");
         exit();
     }
 
@@ -110,7 +126,8 @@ class Bouteille
     public function supprimer($id_bouteille)
     {
         (new BouteilleModel())->supprimer($id_bouteille);
-        header("Location: /bouteille/cellier?message=supprimer");
+        $id_cellier = $_GET['bdc_cel_id'];
+        header("Location: /cellier/un/$id_cellier?message=supprimer");
         exit();
     }
 
