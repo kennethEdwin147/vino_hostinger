@@ -59,11 +59,7 @@ $router->run();
 
 
 // SAQ
-/* for ($i=1; $i < 10 ; $i++) { 
-}
-(new BouteilleSAQModel())->fetch_bottle_from_SAQ($i);
- */
-
-
-/* (new BouteilleSAQModel())->fetch_bottle_from_SAQ("14"); 
- */
+/* for ($i = 1; $i < 4 ; $i++) { 
+    (new BouteilleSAQModel())->fetch_bottle_from_SAQ($i, 4 ); 
+} */
+  

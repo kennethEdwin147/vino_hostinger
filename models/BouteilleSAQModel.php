@@ -1,6 +1,14 @@
 <?php
 class BouteilleSAQModel extends Modele
 {
+    
+    /**
+     * Type de Bouteile
+     *
+     * @var int
+     */
+    private $type_id = 0;
+
     /**
 	 * Requête SELECT de la liste de bouteilles SAQ
 	 *
@@ -10,7 +18,13 @@ class BouteilleSAQModel extends Modele
 	{
 		return $this->database->fetchAll('SELECT * FROM bouteille_saq');
 	}
-
+    
+    /**
+     * Requete INSERT d'une bouteille de la SAQ
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function addBouteilleSAQ($data) 
     {
         extract($data);
@@ -55,15 +69,33 @@ class BouteilleSAQModel extends Modele
     
     /**
      * Récupère les Bouteilles de la SAQ
+     *
      * https://www.scraperapi.com/blog/simple-guide-to-building-a-php-web-scraper-using-goutte-for-beginners/
+     * 
      * @param  mixed $page_id l'id de la page
+     * @param  mixed $type_vin 
+     * - 1 pour rouge
+     * - 2 pour blanc
+     * - 3 pour rose
+     * - 4 pour orange
      * @return void
      */
-    public function fetch_bottle_from_SAQ($page_id)
+    public function fetch_bottle_from_SAQ($page_id, $type_vin)
     {
         $client = new Goutte\Client();
-        $crawler = $client->request('GET', 'https://www.saq.com/fr/produits/vin/vin-rouge?p='.$page_id.'&product_list_limit=96');
-    
+
+        /* Liens selon le type de bouteilles */
+        $indexLien = [
+            '1' => 'https://www.saq.com/fr/produits/vin/vin-rouge?p='.$page_id.'&product_list_limit=96',
+            '2' => 'https://www.saq.com/fr/produits/vin/vin-blanc?p='.$page_id.'&product_list_limit=96',
+            '3' => 'https://www.saq.com/fr/produits/vin/vin-rose?p='.$page_id.'&product_list_limit=96',
+            '4' =>  'https://www.saq.com/fr/produits/vin-orange?p='.$page_id.'&product_list_limit=96',
+        ];
+
+        $crawler = $client->request('GET', $indexLien[$type_vin]);
+        /* type_global */
+        $this->type_id = $type_vin;
+
         $crawler->filter('.product-item-info')->each(function ($node) {
             $data['bout_nom'] = $node->filter('.product-item-link')->text();
             $data['bout_image'] = $node->filter('.product-image-photo')->attr('src');
@@ -72,7 +104,7 @@ class BouteilleSAQModel extends Modele
             $data['bout_prix_saq'] = $node->filter('span .price')->text();
             $data['bout_prix_saq'] = (double) str_replace(['$', ','], ['', '.'], $data['bout_prix_saq']);
             $data['bout_url_img'] = $node->filter('.product-image-photo')->attr('src');
-            $data['bout_type_id'] = 1;
+            $data['bout_type_id'] = $this->type_id;
             $data['bout_url_saq'] = $node->filter('.product-item-photo')->attr('href');
             // Vin rouge  |  750 ml  |  Espagne
             $span_divider = $node->filter('.product-item-identity-format')->text();
@@ -90,10 +122,5 @@ class BouteilleSAQModel extends Modele
             $this->addBouteilleSAQ($data);
         });
     }
-
-
-
-
-
  
 }

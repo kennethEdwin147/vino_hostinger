@@ -1,18 +1,19 @@
-let messageBox = document.querySelector('#alert-5');
+let cellier_popup = document.querySelector('#cellier_popup');
+let liste_cellier_popup = document.querySelector('#liste_cellier_popup');
 
-/* à cedric: parfois message box est pas la  !
-ex: quand il est sur son cellier sans avoir rien modifier ou ajouter
-il y aura une erreur messagebox not defined */
-if (messageBox) {
-    messageBox.addEventListener('onBlur', ()=>{
-        messageBox.remove()
-        window.location.href = '/bouteille/cellier'; // ajout kenneth (je sais pourquoi )
-    })
-    let xButton = document.querySelector('[data-dismiss-target]')
-    xButton.addEventListener('click', ()=>{
-        console.log('x')
-        messageBox.remove();
-        window.location.href = '/bouteille/cellier'; // ajout kenneth (je sais pourquoi )
-    })
-    
+/* message pour les celliers individuels */
+if (cellier_popup) {
+    let xButton = document.querySelector('[data-button-close]');
+    xButton.addEventListener('click', ()=> {
+        let idCellier = document.querySelector('[data-js-cel-id]').dataset.jsCelId;
+        window.location.href = '/cellier/un/' + idCellier; 
+    })   
+}
+
+/* message pour la liste des celliers */
+if (liste_cellier_popup) {
+    let xButton = document.querySelector('[data-button-close]');
+    xButton.addEventListener('click', ()=> {
+        window.location.href = '/cellier/cellier'; 
+    })  
 }

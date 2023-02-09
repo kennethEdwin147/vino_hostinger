@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<header>
+<header >
     <img class="max-h-24 md:max-h-32 w-full object-cover" src="/public/img/drizzle_bg_2.jpg" alt="">
 </header>
 
@@ -12,12 +12,12 @@
     {% if message %}
   
       {% if message == 'ajouter' %}
-      <div id="alert-5" class="mt-5 md:w-80 flex p-4 border-t-4 border-black bg-green-50 " role="alert">
+      <div id="liste_cellier_popup" class="mt-5 md:w-80 flex p-4 border-t-4 border-black bg-green-50 " role="alert">
         <svg class="flex-shrink-0 w-5 h-5 text-gray-800 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
         <div class="ml-3 text-sm font-medium text-gray-800 ">
           Ajout réussi ! 
         </div>
-        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50  text-gray-500 rounded-lg focus:ring-2 focus:ring-gray-400 p-1.5 hover:bg-gray-200 inline-flex h-8 w-8  " data-dismiss-target="#alert-border-5" aria-label="Close">
+        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50  text-gray-500 rounded-lg focus:ring-2 focus:ring-gray-400 p-1.5 hover:bg-gray-200 inline-flex h-8 w-8  " data-button-close="#alert-border-5" aria-label="Close">
           <span class="sr-only">Dismiss</span>
           <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
@@ -25,13 +25,13 @@
       {% endif %}
   
       {% if message == 'modifier' %}
-      <div id="alert-5" class="mt-5 md:w-80 flex p-4 border-t-4 border-black bg-green-50 " role="alert">
+      <div id="liste_cellier_popup" class="mt-5 md:w-80 flex p-4 border-t-4 border-black bg-green-50 " role="alert">
         <svg class="flex-shrink-0 w-5 h-5 text-gray-800 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
         <div class="ml-3 text-sm font-medium text-gray-800 ">
           Modification réussi !
         </div>
         <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-gray-500 rounded-lg focus:ring-2 focus:ring-gray-400 p-1.5 hover:bg-gray-200 inline-flex h-8 w-8 " 
-        data-dismiss-target="#alert-border-5" aria-label="Close">
+        data-button-close="#alert-border-5" aria-label="Close">
           <span class="sr-only">Dismiss</span>
           <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
@@ -39,13 +39,13 @@
       {% endif %}
   
       {% if message == 'supprimer' %}
-      <div id="alert-5" class="mt-5 md:w-80 flex p-4 border-t-4 border-black bg-green-50 " role="alert">
+      <div id="liste_cellier_popup" class="mt-5 md:w-80 flex p-4 border-t-4 border-black bg-green-50 " role="alert">
         <svg class="flex-shrink-0 w-5 h-5 text-gray-800 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
         <div class="ml-3 text-sm font-medium text-gray-800 ">
           Suppression réussi !
         </div>
         <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-gray-500 rounded-lg focus:ring-2 focus:ring-gray-400 p-1.5 hover:bg-gray-200 inline-flex h-8 w-8 " 
-        data-dismiss-target="#alert-border-5" aria-label="Close">
+        data-button-close="#alert-border-5" aria-label="Close">
           <span class="sr-only">Dismiss</span>
           <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
@@ -57,48 +57,26 @@
   </section>
   
 <section class="section mt-5 sm:mt-6 md:mt-9 flex items-center gap-x-10">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold ">Liste</h1>
-
-    <!-- Modal toggle -->
-    <div x-data="{ open: false }">
-        <button 
-        @click="open = !open"
-        class="block text-sm bg-gray-800 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded " type="button">
-            Ajouter un cellier
-        </button>
-    
-        {# https://alpineapple.dev/modal/ #}
-        <article x-transition x-show="open === true" class="flex justify-center items-center  fixed inset-0 bg-black bg-opacity-50 z-50">
-            <div  @click.outside="open = false">
-              <div  class="w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow " role="alert">
-                <div class="flex">
-                    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-blue-500 bg-blue-100 rounded-lg ">
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"></path></svg>
-                        <span class="sr-only">Refresh icon</span>
-                    </div>
-
-                    <form class="bg-white rounded p-2 mb-1 ml-3" action="/cellier/ajout" method="post">
-                      <div class="mb-3">
-                      <label class="block mb-2 text-sm font-normal " for="username">
-                        Nom du cellier:
-                      </label>
-                      <input name="ajoutCellier" class="shadow-sm appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="" required>
-                      </div>
-                      <div>
-                        <button type="submit" class="inline-flex justify-center w-full px-2 py-2.5 text-xs font-medium text-center text-white  rounded-md bg-gray-800">Ajouter</button>
-                    </div>
-                    </form>
-                    <button 
-                    @click="open = false"
-                    type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 " data-dismiss-target="#toast-interactive" aria-label="Close">
-                        <span class="sr-only">Close</span>
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </button>
-                </div>
-            </div>
-              </div>
-        </article>
-    </div>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold ">Mes celliers</h1>
+    <article 
+    x-data="{ open: false }"
+    class="hidden md:block">
+      <div 
+      @click="open = !open"
+      type="button" 
+      class="flex items-center gap-x-3 cursor-pointer font-medium
+      text-white sans_6 bg-black shadow-2xl  rounded-xl text-sm px-5 py-3.5 text-center">
+        <img class='w-4' src="/public/img/pencil-white.svg" alt="">
+        <span>  Ajouter un cellier</span>
+      </div>
+      <!-- Modal toggle --> 
+      {# https://alpineapple.dev/modal/ #}
+      <article x-transition x-show="open === true" x-cloak class="flex justify-center items-center  fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div  @click.outside="open = false">
+          {{ include('components/add-cellier.html') }}
+        </div>
+      </article>
+    </article>
 </section>
 
 {# Affichage de la liste des celliers #}
@@ -125,7 +103,7 @@
           </div> 
         </article>    
          {# modal de la carte liste #} {# https://flowbite.com/docs/components/toast/ #}
-         <div x-transition x-show="open === true" class="flex justify-center items-center  fixed inset-0 bg-black bg-opacity-50 z-50">
+         <div x-cloak x-transition x-show="open === true" class="flex justify-center items-center  fixed inset-0 bg-black bg-opacity-50 z-50">
           <div  @click.outside="open = false">
             <div  class="w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow " role="alert">
               <div class="flex">
@@ -158,7 +136,7 @@
                   </div>
                   <button 
                   @click="open = false"
-                  type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 " data-dismiss-target="#toast-interactive" aria-label="Close">
+                  type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8"  aria-label="Close">
                       <span class="sr-only">Close</span>
                       <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                   </button>
@@ -167,19 +145,37 @@
             </div>
         </div>
     </div>
-   
+  {% endfor %} 
+</section>
 
-    {# https://alpineapple.dev/modal/ #}
-   
+{# https://alpineapple.dev/modal/ #}
+<section x-data="{ open: false }"
+class="fixed bottom-[5vh] right-7 md:hidden">
+  <div 
+  @click="open = !open"
+  type="button" 
+  class="flex items-center gap-x-3 cursor-pointer font-medium
+  text-white sans_6 bg-black shadow-2xl  rounded-xl text-sm px-5 py-3.5 text-center">
+    <img class='w-4' src="/public/img/pencil-white.svg" alt="">
+    <span>  Ajouter un cellier</span>
+  </div>
 
-    {% endfor %} 
+  <!-- Modal toggle --> 
+  {# https://alpineapple.dev/modal/ #}
+  <article x-transition x-show="open === true" x-cloak class="flex justify-center items-center  fixed inset-0 bg-black bg-opacity-50 z-50">
+    <div  @click.outside="open = false">
+      {{ include('components/add-cellier.html') }}
+    </div>
+  </article>
 
 </section>
 
 
+
+
 <style>
     .section {
-        max-width: clamp(0px, 80vw, 1200px);
+        max-width: clamp(0px, 90vw, 1200px);
         margin-left: auto;
         margin-right: auto;
       }
@@ -197,4 +193,7 @@
 
 {% endif %}
 
+<script src="/public/js/Bouteille.js"></script>
+<script src="/public/js/message.js"></script>
+<script src="/public/js/main.js"></script>
 {% endblock main %}

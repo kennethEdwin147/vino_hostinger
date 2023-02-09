@@ -17,18 +17,7 @@ class CellierModel extends Modele {
         return $this->database->getInsertId(); 
     }
     
-    /**
-     * Requête SELECT d'un cellier de l'utilisateur
-     *
-     * @param  mixed $id_utilisateur
-     * @return void
-     */
-    public function getCellier($id_utilisateur)
-    {
-        return $this->database->fetch('SELECT * FROM cellier WHERE cel_uti_id  = ?', $id_utilisateur);
-    }
 
-    
     /**
      * Requête SELECT NOM des celliers
      *

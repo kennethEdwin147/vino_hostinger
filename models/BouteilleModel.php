@@ -54,11 +54,11 @@ class BouteilleModel extends Modele {
 	{
 		$this->database->query('INSERT INTO bouteille_du_cellier ', [ 
 			'bdc_bout_id' => $data['bdc_bout_id'],
-			'bdc_date_achat' => $data['bdc_date_achat'],
+			'bdc_date_achat' => empty($data['bdc_date_achat']) ? $this->database->literal('NOW()') : $data['bdc_date_achat'],
 			'bdc_garde_jusqua' => $data['bdc_garde_jusqua'],
 			'bdc_notes' => $data['bdc_notes'],
 			'bdc_quantite' => $data['bdc_quantite'],
-			'bdc_millesime' => $data['bdc_millesime'],
+			'bdc_millesime' => empty($data['bdc_millesime']) ? '' :  '',
 			'bdc_cel_id' => $data['bdc_cel_id']
 		]);
         
@@ -75,11 +75,11 @@ class BouteilleModel extends Modele {
 	public function modifierBouteille($data)
 	{
 		$this->database->query('UPDATE bouteille_du_cellier SET', [
-			'bdc_date_achat' => $data['bdc_date_achat'],
+			'bdc_date_achat' => empty($data['bdc_date_achat']) ? $this->database->literal('NOW()') : $data['bdc_date_achat'],
 			'bdc_garde_jusqua' => $data['bdc_garde_jusqua'],
 			'bdc_notes' => $data['bdc_notes'],
 			'bdc_quantite' => $data['bdc_quantite'],
-			'bdc_millesime' => $data['bdc_millesime']
+			'bdc_millesime' => empty($data['bdc_millesime']) ? '' :  '',
 		], 'WHERE bdc_id = ?', $data['bdc_id']);
 
 		return $this->database->getAffectedRows();
@@ -117,14 +117,26 @@ class BouteilleModel extends Modele {
 		
 		return $bouteille;
 	}
-
+	
+	/**
+	 * Requete UPDATE d'une bouteille
+	 *
+	 * @param  mixed $id_bouteille
+	 * @return void
+	 */
 	public function supprimer($id_bouteille)
 	{
 		$this->database->query('DELETE FROM bouteille_du_cellier WHERE bdc_id = ?', $id_bouteille);
 		return $this->database->getAffectedRows();
 	}
 
-
+	
+	/**
+	 * Requete de RECHERCHE dans les CELLIER de USER
+	 *
+	 * @param  mixed $recherche
+	 * @return void
+	 */
 	public function rechercheNom($recherche)
 	{
 		return $this->database->fetchAll(
@@ -135,13 +147,15 @@ class BouteilleModel extends Modele {
 			INNER JOIN bouteille_du_cellier ON cellier.cel_id = bouteille_du_cellier.bdc_cel_id
 			INNER JOIN bouteille_saq on bouteille_du_cellier.bdc_bout_id = bouteille_saq.bout_id 
 			WHERE cellier.cel_uti_id = ?
-			AND bouteille_saq.bout_nom LIKE '%$recherche%'",
+			AND bouteille_saq.bout_nom LIKE '%$recherche%'
+			OR bouteille_saq.bout_description LIKE '%$recherche%
+			OR bouteille_saq.bout_pays LIKE '%$recherche%
+			OR  bouteille_du_cellier.bdc_cel_millesime LIKE '%$recherche%",
 			$_SESSION['uti_id']
 		);
 	}
-
 	/**
-	 * Tri des vins dans le cellier
+	 * requete de TRI des vins dans un cellier
 	 */
 	public function triNom($tri)
 	{
@@ -165,5 +179,7 @@ class BouteilleModel extends Modele {
 
 
 ?>
+
+
 
 
