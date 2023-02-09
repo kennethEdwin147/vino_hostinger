@@ -62,8 +62,7 @@
     <span class="sr-only">Icon description</span>
   </a>
  #}
-
- <div class="flex items-center gap-x-5">
+ <div class="flex items-center gap-x-2 sm:gap-x-5 pl-5">
 {# lien retour #}
 <a href="/cellier/cellier"
 class="text-white bg-black hover:bg-blue-800 focus:ring-4 focus:outline-none rotate-180
@@ -78,7 +77,7 @@ focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-fl
   <h1 class="text-2xl sm:text-2xl lg:text-4xl capitalize font-extrabold ">{{nom}}</h1>
   <article 
     class="hidden md:block">
-    <a href="/bouteille/nouveau"
+    <a href="/bouteille/nouveau?id_cellier={{cel_id}}"
     class="flex items-center gap-x-3 cursor-pointer font-medium
     text-white sans_6 bg-black shadow-2xl  rounded-xl text-sm px-5 py-3.5 text-center">
       <img class='w-4' src="/public/img/pencil-white.svg" alt="">
@@ -95,9 +94,9 @@ focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-fl
 </section>
 
 
-<section id="app-4" class="flex flex-wrap mt-8 section gap-2">
+<section id="app-4" class="flex flex-wrap mt-8 section gap-4">
 {% for bouteille in bouteilles %}
-<article class="w-full  md:w-[calc(50%-2rem)]   p-6 bg-white border border-gray-200 rounded-lg shadow flex items-center "
+<article class="w-full  md:w-[calc(50%-2rem)] p-6 pl-3 bg-white border border-gray-200 rounded-lg shadow flex items-center "
    data-js-bouteille
   data-js-id="{{bouteille.bdc_id}}"
   @click="">
@@ -111,7 +110,7 @@ focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-fl
   </a>
 
   <div class="ml-4">
-    <h3 class="mb-1 font-normal text-xl text-black ">
+    <h3 class="mb-1 font-medium text-lg text-black ">
       <a href="/bouteille/detail/{{bouteille.bdc_id}}" class="hover:underline">
         {{bouteille.bout_nom}}
       </a>
@@ -146,13 +145,15 @@ focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-fl
 {% if bouteilles is empty %}
 
 
-<section
-class="overflow-hidden sm:grid sm:grid-cols-2 sm:items-center section"
->
-
-<p>
-Refaire message de bienvenue
-</p>
+<section class="section md:mt-4">
+  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow 0">
+    <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+       Commencer
+        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </a>
+</div>
+</section>
 
 </section>
 {% endif %}
@@ -160,7 +161,7 @@ Refaire message de bienvenue
     {#  button en bas ne pas deplacer #}
     <footer 
     class="fixed bottom-[5vh] right-7 md:hidden" >
-      <a href="/bouteille/nouveau"
+      <a href="/bouteille/nouveau?id_cellier={{cel_id}}"
       class="flex items-center gap-x-3 cursor-pointer font-medium
       text-white sans_6 bg-black shadow-2xl  rounded-xl text-sm px-5 py-3.5 text-center">
         <img class='w-4' src="/public/img/pencil-white.svg" alt="">

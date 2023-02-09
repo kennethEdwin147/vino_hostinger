@@ -15,13 +15,13 @@
       <article class="flex justify-center items-center">
           <div class="w-full max-w-md pt-6 md:pt-12">
               <form x-data="combobox" method="POST" action="/bouteille/modifier" class="bg-white shadow-md rounded px-8 pt-6  pb-8 mb-4">
+                
                   <div class="mb-4">
-                      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                        Date d'achat
-                      </label>
-                      <input name="bdc_date_achat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="datetime-local" value="{{resultatDetail.bdc_date_achat}}">
-                  </div>
-             
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Date d'achat
+                    </label>
+                    <input value="{{resultatDetail.bdc_date_achat}}" name="bdc_date_achat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="datetime">
+                </div> 
             
                 <div class="mb-4">
                   <label class="block text-gray-700 text-sm font-bold mb-2" for="username">

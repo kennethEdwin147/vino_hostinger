@@ -45,9 +45,14 @@
                     </button>
                   </div>                   
                 {% else %}
+                {# select avec la liste des celliers  #}
                     <select name="bdc_cel_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" required type="number">
                       {% for cellier in listeCellier %}
-                        <option value="{{cellier.cel_id}}">{{cellier.cel_nom}}</option>
+                       {% if id_cellier == cellier.cel_id %}
+                       <option value="{{cellier.cel_id}}" selected>{{cellier.cel_nom}}</option>
+                       {% else %}
+                       <option value="{{cellier.cel_id}}">{{cellier.cel_nom}}</option>
+                       {% endif %}
                       {% endfor %}
                     </select>
                    {% endif %}
