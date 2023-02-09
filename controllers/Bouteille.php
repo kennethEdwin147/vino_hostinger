@@ -1,6 +1,11 @@
 <?php
 class Bouteille
-{
+{    
+    /**
+     *  Route s'assurant que l'usager soit authentifié
+     *
+     * @return void
+     */
     public function protection()
     {
         if (!isset($_SESSION['utilisateur'])) {
@@ -51,7 +56,8 @@ class Bouteille
 
         $this->render('bouteille/nouveau.html',[
             'bouteillesSAQ' => $bouteillesSAQ,
-            'listeCellier' => $listeCellier 
+            'listeCellier' => $listeCellier,
+            'id_cellier' => $_GET['id_cellier'] ?? 'aucun'
         ]);
     }
 
@@ -89,7 +95,12 @@ class Bouteille
             'resultatDetail' => $result   
         ]);
     }
-
+    
+    /**
+     * Gère la requête UPDATE d'une bouteille
+     *
+     * @return void
+     */
     public function modifierBouteille()
     {
         (new BouteilleModel())->modifierBouteille($_POST);
@@ -98,7 +109,12 @@ class Bouteille
         exit();
     }
 
-    
+        
+    /**
+     * Gère la requête UPDATE du nombre d'une bouteille
+     *
+     * @return void
+     */
     public function ajouterQuantiteBouteille() {
         $body = json_decode(file_get_contents('php://input'));
         $bte = new BouteilleModel();
@@ -106,7 +122,12 @@ class Bouteille
         echo json_encode($resultat);
     }
    
-
+    
+    /**
+     * Gère la requête UPDATE du nombre d'une bouteille
+     *
+     * @return void
+     */
     public function boireQuantiteBouteille() {
         $body = json_decode(file_get_contents('php://input'));
         $bte = new BouteilleModel();
@@ -122,7 +143,13 @@ class Bouteille
         $listeBouteille = (new BouteilleSAQModel())->autocomplete($body->nom);
         echo json_encode($listeBouteille);
     }
-
+    
+    /**
+     * Gère la requête DELETE d'une bouteille
+     *
+     * @param  mixed $id_bouteille
+     * @return void
+     */
     public function supprimer($id_bouteille)
     {
         (new BouteilleModel())->supprimer($id_bouteille);

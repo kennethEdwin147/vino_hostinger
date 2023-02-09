@@ -1,6 +1,11 @@
 <?php
 class Compte
-{
+{    
+    /**
+     * Contrôle l'affichage de la page profil de l'utilisateur
+     *
+     * @return void
+     */
     public function compte() 
     {
         $this->render('compte/compte.html', [
