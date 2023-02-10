@@ -1,6 +1,6 @@
 <?php
 class Bouteille
-{    
+{
     /**
      *  Route s'assurant que l'usager soit authentifié
      *
@@ -11,26 +11,45 @@ class Bouteille
         if (!isset($_SESSION['utilisateur'])) {
             header('location: /utilisateur/accueil');
             exit();
-        } 
-    } 
-
-    /* 
-    * Recherche
-    *
-    *
-    */
+        }
+    }
+    
+    /**
+     * Fonction qui permet la recherche en utilisant le filter
+     *
+     * @return void
+     */
     public function recherche()
     {
-        $recherche = $_POST['recherche'];
         $model = new BouteilleModel();
-        print_r($recherche);
-        $resultat = $model->rechercheNom($recherche);
-        $this->render('bouteille/cellier.html', [
-            'bouteilles' => $resultat
+        $dataBrut = $model->recherche();
+
+        $resultat = array_filter($dataBrut, function($el) {
+
+            $recherche = strtolower(trim($_POST['recherche']));
+
+            if ( str_contains(strtolower($el['bout_nom']), $recherche)
+                ||  str_contains(strtolower($el['bdc_quantite']), $recherche)
+                ||  str_contains(strtolower($el['bdc_millesime']), $recherche)
+                ||  str_contains(strtolower($el['bout_pays']), $recherche)
+                ||  str_contains(strtolower($el['bout_description']), $recherche)
+            ) {
+                return  $el;
+            }
+            
+        });
+
+
+        // echo "<pre>";
+        //  print_r($resultat);
+        //  echo "</pre>";
+
+        $this->render('bouteille/recherche.html', [
+             'bouteilles' => $resultat
         ]);
 
     }
-        
+
     /* trie */
     public function tri()
     {
@@ -50,7 +69,7 @@ class Bouteille
      * @return void
      */
     public function nouveau()
-    {  
+    {
         $bouteillesSAQ = (new BouteilleSAQModel())->getListeBouteille();
         $listeCellier = (new CellierModel())->getAllCelliers($_SESSION['uti_id']);
 
@@ -61,25 +80,25 @@ class Bouteille
         ]);
     }
 
-  
+
     /**
      * Gère la requête INSERT de bouteille
      *
      * @return void
      */
     public function insertion()
-    { 
+    {
         $bte = new BouteilleModel();
         /* Récupère l'id de la bouteille par son nom */
         $id_bouteille = $bte->getIdByName($_POST['nom_bouteille_saq'])['bout_id'] ?? '11';
         $_POST['bdc_bout_id'] = $id_bouteille;
-       
+
         $cellier = $bte->insertion($_POST);
         $id_cellier = $_POST['bdc_cel_id'];
         header("Location: /cellier/un/$id_cellier?message=ajouter");
         exit();
     }
-    
+
     /**
      * Affiche la page de modification d'une bouteille
      *
@@ -92,10 +111,10 @@ class Bouteille
         $result = $model->getUneBouteilleCellier($id_bouteille);
         $result['bdc_date_achat'] = str_replace('.000000', '', $result['bdc_date_achat']);
         $this->render('bouteille/detail.html',[
-            'resultatDetail' => $result   
+            'resultatDetail' => $result
         ]);
     }
-    
+
     /**
      * Gère la requête UPDATE d'une bouteille
      *
@@ -109,7 +128,7 @@ class Bouteille
         exit();
     }
 
-        
+
     /**
      * Gère la requête UPDATE du nombre d'une bouteille
      *
@@ -121,8 +140,8 @@ class Bouteille
 		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
         echo json_encode($resultat);
     }
-   
-    
+
+
     /**
      * Gère la requête UPDATE du nombre d'une bouteille
      *
@@ -143,7 +162,7 @@ class Bouteille
         $listeBouteille = (new BouteilleSAQModel())->autocomplete($body->nom);
         echo json_encode($listeBouteille);
     }
-    
+
     /**
      * Gère la requête DELETE d'une bouteille
      *

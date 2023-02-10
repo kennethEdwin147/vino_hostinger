@@ -1,0 +1,13 @@
+<!-- Dropdown menu -->
+<div id="dropdownDivider" class="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-28 ">
+    <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDividerButton">
+      <li>
+        <a href="{{bouteille.bout_url_saq}}" class="block px-4 py-2  hover:bg-gray-100 ">
+          <img class="w-20" src="/public/img/logo.webp" alt=""> 
+        </a>
+      </li>
+    </ul>
+    <div class="py-2">
+      <a href="/bouteille/supprimer/{{bouteille.bdc_id}}?bdc_cel_id={{bouteille.bdc_cel_id}}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 ">supprimer</a>
+    </div>
+</div>

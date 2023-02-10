@@ -134,23 +134,20 @@ class BouteilleModel extends Modele {
 	/**
 	 * Requete de RECHERCHE dans les CELLIER de USER
 	 *
-	 * @param  mixed $recherche
 	 * @return void
 	 */
-	public function rechercheNom($recherche)
+	public function recherche()
 	{
 		return $this->database->fetchAll(
 			"SELECT 
 				bouteille_du_cellier.*,
-				bouteille_saq.*			
+				bouteille_saq.*	,
+				cellier.*		
 			from cellier
 			INNER JOIN bouteille_du_cellier ON cellier.cel_id = bouteille_du_cellier.bdc_cel_id
 			INNER JOIN bouteille_saq on bouteille_du_cellier.bdc_bout_id = bouteille_saq.bout_id 
 			WHERE cellier.cel_uti_id = ?
-			AND bouteille_saq.bout_nom LIKE '%$recherche%'
-			OR bouteille_saq.bout_description LIKE '%$recherche%
-			OR bouteille_saq.bout_pays LIKE '%$recherche%
-			OR  bouteille_du_cellier.bdc_cel_millesime LIKE '%$recherche%",
+			",
 			$_SESSION['uti_id']
 		);
 	}

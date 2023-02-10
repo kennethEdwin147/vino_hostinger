@@ -12,7 +12,7 @@
           Admin
         </p>
       </div>
-      <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+      <h2 class="max-w-lg mb-6 font-sans text-3xl sm:text-center font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
         <span class="relative inline-block">
 
           <span class="relative"></span>
@@ -20,10 +20,10 @@
           Bienvenue dans le Dashboard
         </h2>
         <p class="text-base text-gray-700 md:text-lg">
-        Informations sur touts les utilisateurs, celliers et bouteilles.
+        Informations sur tout les utilisateurs, celliers et bouteilles.
         </p>
     </div>
-<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+{# <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="grid grid-cols-2 row-gap-8 md:grid-cols-4">
       <div class="text-center md:border-r">
         <h6 class="text-4xl text-[#651fff] font-bold lg:text-5xl xl:text-6xl">{{usagers}}</h6>
@@ -39,7 +39,7 @@
 
         </p>
       </div>
-      <div class="text-center md:border-r">
+      <div class="text-center md:border-r ">
         <h6 class="text-4xl text-[#651fff] font-bold lg:text-5xl xl:text-6xl">{{bouteille24h}}</h6>
         <p class="text-sm font-bold tracking-widest text-gray-800 uppercase lg:text-base">
             Bouteilles ajouter<br> dernier 24H
@@ -55,10 +55,55 @@
       </div>
     
     </div>
+  </div> #}
+  <!-- component -->
+<div class="max-w-full mx-4 py-6 sm:mx-auto sm:px-6 lg:px-8">
+  <div class="sm:flex sm:space-x-4">
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+          <div class="bg-white p-5">
+              <div class="sm:flex sm:items-start">
+                  <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                      <h3 class="text-sm leading-6 font-medium text-gray-400">Celliers</h3>
+                      <p class="text-3xl font-bold text-black">{{celliers}}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+          <div class="bg-white p-5">
+              <div class="sm:flex sm:items-start">
+                  <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                      <h3 class="text-sm leading-6 font-medium text-gray-400">Bouteilles dernier 24h</h3>
+                      <p class="text-3xl font-bold text-black">{{bouteille24h}}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+          <div class="bg-white p-5">
+              <div class="sm:flex sm:items-start">
+                  <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                      <h3 class="text-sm leading-6 font-medium text-gray-400">Utilisateurs</h3>
+                      <p class="text-3xl font-bold text-black">{{usagers}}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+          <div class="bg-white p-5">
+              <div class="sm:flex sm:items-start">
+                  <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                      <h3 class="text-sm leading-6 font-medium text-gray-400">Bouteilles</h3>
+                      <p class="text-3xl font-bold text-black">{{bouteilleTotal}}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
+</div>
 
 
-
+{# 
 <div class="p-10 m-10 relative overflow-x-auto shadow-md bg-white sm:rounded-lg">
     <div class="flex items-center justify-between pb-4 bg-white ">
     
@@ -133,7 +178,102 @@
         {% endfor %}
     </table>
 
-</div>
+</div> #}
+<!-- component -->
+<body class="antialiased font-sans bg-gray-200">
+  <div class="container mx-auto px-4 sm:px-8">
+      <div class="py-8">
+          <div>
+          </div>
+          <div class="my-2 flex sm:flex-row flex-col">
+              <div class="flex flex-row mb-1 sm:mb-0">
+                  
+                      </div>
+                  </div>
+                  <div class="relative">
+                      
+                      
+                  </div>
+              </div>
+              <div class="block relative">
+              </div>
+          </div>
+              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                  <table class="min-w-full leading-normal">
+                      <thead>
+                          <tr>
+                              <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                  Utilisateurs
+                              </th>
+                              <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                  Role
+                              </th>
+                              <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                  Nom Cellier
+                              </th>
+                              <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                  Bouteilles dans Cellier
+                              </th>
+                          </tr>
+                      </thead>
+                      {% for bouteille in findBouteilleParUsers %}
+
+                      <tbody>
+                          <tr>
+                              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                  <div class="flex items-center">
+                                      <div class="flex-shrink-0 w-10 h-10">
+                                          <img class="w-full h-full rounded-full"
+                                              src="../../public/img/user.png"
+                                             />
+                                      </div>
+                                      <div class="ml-3">
+                                          <p class="text-gray-900 whitespace-no-wrap">
+                                            {{bouteille.uti_prenom}}
+                                            {{bouteille.uti_nom}}
+                                          </p>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">  {% if bouteille.uti_rol_id == 2 %}
+                              Admin
+                              {% else %}
+                              Membre
+      
+                          {% endif %}
+                                  </p>
+                              </td>
+                              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                  <p class="text-gray-900 whitespace-no-wrap">
+                                    {{bouteille.cel_nom}}
+
+                                  </p>
+                              </td>
+                              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                  <span
+                                      class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                     
+                                      {{bouteille.nbBouteille}}
+                                      </span>
+                                  </span>
+                              </td>
+                          </tr>
+                          
+                      </tbody>
+                      {% endfor %}
+
+                  </table>
+                 
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
  
 {# compo kenneth #}
 {# <header>

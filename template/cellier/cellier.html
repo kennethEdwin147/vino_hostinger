@@ -90,11 +90,18 @@
         class="relative">
         <a href="/cellier/un/{{cellier.cel_id}}" >
             <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow ">
-                      
-            <p class="mb-3 font-normal text-xl text-black ">{{cellier.cel_nom}}</p>  
 
-            <p class="mb-3 font-normal text-gray-500 ">Go to this step by step guideline process on how to certify for your weekly benefits:</p>  
-            </div>
+              <div class="flex gap-x-5">
+                <img class="w-16 object-cover" src="/public/img/wine.png" alt="">
+                <div>
+                  <p class="mb-3 pt-1 font-normal text-xl text-black ">{{cellier.cel_nom}}</p>  
+
+                </div>     
+
+              </div>
+
+            {# <p class="mb-3 font-normal text-gray-500 ">Go to this step by step guideline process on how to certify for your weekly benefits:</p>  
+            </div> #}
           </a>
           <div 
           @click="open = !open"
@@ -189,13 +196,23 @@ class="fixed bottom-[5vh] right-7 md:hidden">
 {# implémenter le message pour bouteille vides #}
 {% if celliers is empty %}
 
-<section class="section md:mt-4">
+<section class="section md:mt-4" x-data="{open : false}">
   <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow 0">
-    <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+    <p class="mb-3 font-normal text-gray-700">Bienvenue sur Vino, ajouter un premier cellier.</p>
+    <a @click ="open = !open"
+    href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
        Commencer
         <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
     </a>
+
+    <article x-transition x-show="open === true" x-cloak class="flex justify-center items-center  fixed inset-0 bg-black bg-opacity-50 z-50">
+      <div  @click.outside="open = false">
+        {{ include('components/add-cellier.html') }}
+      </div>
+    </article>
+
+
+
 </div>
 </section>
 
@@ -204,6 +221,6 @@ class="fixed bottom-[5vh] right-7 md:hidden">
 {% endif %}
 
 <script src="/public/js/Bouteille.js"></script>
-<script src="/public/js/confirm.js"></script>
+<script src="/public/js/message.js"></script>
 <script src="/public/js/main.js"></script>
 {% endblock main %}
