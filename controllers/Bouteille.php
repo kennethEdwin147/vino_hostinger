@@ -109,7 +109,14 @@ class Bouteille
     {
         $model = new BouteilleModel();
         $result = $model->getUneBouteilleCellier($id_bouteille);
+        echo '<pre>';
+        print_r($result['bdc_date_achat'] );
+        echo '</pre>';
         $result['bdc_date_achat'] = str_replace('00:00:00', '', $result['bdc_date_achat']);
+        // à supprimer
+        echo '<pre>';
+        print_r($result['bdc_date_achat'] );
+        echo '</pre>';
         $result['bdc_date_achat']= trim($result['bdc_date_achat']);
         $this->render('bouteille/detail.html',[
             'resultatDetail' => $result
