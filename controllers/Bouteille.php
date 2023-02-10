@@ -112,7 +112,7 @@ class Bouteille
         echo '<pre>';
         print_r($result['bdc_date_achat'] );
         echo '</pre>';
-        $result['bdc_date_achat'] = str_replace('00:00:00', '', $result['bdc_date_achat']);
+        $result['bdc_date_achat'] = str_replace('00:00:00.000000', '', $result['bdc_date_achat']);
         // à supprimer
         echo '<pre>';
         print_r($result['bdc_date_achat'] );
