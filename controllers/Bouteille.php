@@ -109,7 +109,8 @@ class Bouteille
     {
         $model = new BouteilleModel();
         $result = $model->getUneBouteilleCellier($id_bouteille);
-        $result['bdc_date_achat'] = str_replace('.000000', '', $result['bdc_date_achat']);
+        $result['bdc_date_achat'] = str_replace('00:00:00', '', $result['bdc_date_achat']);
+        $result['bdc_date_achat']= trim($result['bdc_date_achat'])
         $this->render('bouteille/detail.html',[
             'resultatDetail' => $result
         ]);
