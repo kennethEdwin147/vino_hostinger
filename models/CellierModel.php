@@ -56,7 +56,7 @@ class CellierModel extends Modele {
 			from cellier
 			INNER JOIN bouteille_du_cellier ON cellier.cel_id = bouteille_du_cellier.bdc_cel_id
 			INNER JOIN bouteille_saq on bouteille_du_cellier.bdc_bout_id = bouteille_saq.bout_id 
-            WHERE  %and ", [
+            WHERE  %and ORDER BY bouteille_du_cellier.bdc_id DESC", [
 				'cellier.cel_uti_id' => $_SESSION['uti_id'],
 				'cellier.cel_id' => $cel_id
 			]);

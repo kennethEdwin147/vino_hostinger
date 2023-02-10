@@ -7,5 +7,5 @@ module.exports = {
   plugins: [require('@tailwindcss/typography')]
 }
 
-/* npx tailwindcss -i ./public/css/input.css -o ./public/css/tailwind2323.css --watch --minify
+/* npx tailwindcss -i ./public/css/input.css -o ./public/css/tailwindfin.css --watch --minify
  */
