@@ -96,9 +96,9 @@
  data-js-bouteille
  data-js-id="{{bouteille.bdc_id}}"
  class="relative max-w-xs">
-	  <div class="p-4 py-6 bg-white border border-gray-200 rounded-lg shadow">
+	  <div class="p-4 py-6 pb-4 bg-white border border-gray-200 rounded-lg shadow">
 		<div class="flex relative ">
-      <img class="w-20 relative left-10" src="{{bouteille.bout_image}}" alt="">
+      <img class="object-cover w-16 md:w-20 pb-1 pt-3 relative left-10" src="{{bouteille.bout_image}}" alt="">
 		  <div x-data="{ isOpen: false }" 
       class="absolute -top-3 right-0 cursor-pointer  mt-3 ml-3 px-3 py-2 rounded-lg z-10 ">
         <img src="/public/img/petit-menu.svg" alt="" @click="isOpen = ! isOpen" >
@@ -172,7 +172,7 @@
 
   <style>
     .section {
-      max-width: clamp(0px, 80vw, 1200px);
+      max-width: clamp(0px, 85vw, 1200px);
       margin-left: auto;
       margin-right: auto;
     }
