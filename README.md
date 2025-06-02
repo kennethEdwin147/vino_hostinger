@@ -1,5 +1,4 @@
-### VERY OLD SCHOOL PROJECT LOL WITH BAD CODE PRACTICE AND NO TESTING
-
+### VERY OLD SCHOOL PROJECT 
 ### Site de vin inspiré de la SAQ
 
 - https://jaimemonvino.com/
